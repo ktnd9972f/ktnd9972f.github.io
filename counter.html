@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>パングラム作成支援ツール</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <!-- Custom CSS -->
+        <link href="css/ws.css" rel="stylesheet" />
+        <link href="css/base.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="overall_container">
+            <!-- Responsive navbar-->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container px-lg-5">
+                    <a class="navbar-brand" href="./index.html">きつねのものおき</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="./index.html">Home</a></li>
+                            <!--
+                            <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                            -->
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        
+        <section class="pt-4">
+                <div class="container d-flex justify-content-center">
+                    <div class="row gx-lg-5 justify-content-center">
+                        <!-- 説明 -->
+                        <div class="col-lg-4 mb-5 bg-light">
+                            <div class="container px-3 pt-3">
+                                <p class="fs-4"><i class="bi bi-pencil-fill"></i>&nbsp;パングラム作成支援ツール</p>
+                                <p>ワードリストに入力されたひらがな・カタカナの数を数え、視覚化するツールです。</p>
+                                <p>ワードゲーム、謎解きなどですべての文字が使われているかを確かめたり、使われていない文字を特定したりできます。</p>
+                            </div>
+                            <div class="container px-3 pb-3">
+                                <p class="fs-5"><i class="bi bi-gear"></i>&nbsp;設定</p>
+                                <div class="row">
+                                    <label>
+                                        <input type="checkbox" name="distinguish_dakuon" id="check1" onchange="checkbox();">清音と濁音を区別する
+                                    </label>
+                                </div>
+                                <div class="row">
+                                    <label>
+                                        <input type="checkbox" name="distinguish_sutegana" id="check2" onchange="checkbox();">大文字と小文字を区別する
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="container px-3">
+                                <p class="fs-5"><i class="bi bi-card-list"></i>&nbsp;ワードリスト</p>
+                                <div class="form-wrapper">
+                                    <div class="add-btn-area px-1">
+                                        <button class="add-btn btn btn-secondary" onclick="add_form_element();"><i class="bi bi-plus-circle"></i>&nbsp;入力欄の追加</button>
+                                    </div>
+                                    <div class="container p-1 pb-3">
+                                        <form id="form">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 五十音表 -->
+                        <div class="col-auto mb-5">
+                            <div class="container d-flex justify-content-center my-3">
+                                <div class="d-table text-nowrap" style="border-collapse: separate; border-spacing: 1pt;">
+                                    <div class="d-table-row" id="gojuon_table_0">
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_45">ん</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_43">わ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_38">ら</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_35">や</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_30">ま</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_25">は</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_20">な</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_15">た</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_10">さ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_5">か</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_0">あ</button></div>
+                                    </div>
+                                    <div class="d-table-row" id="gojuon_table_1">
+                                        <div class="d-table-cell text-center" id="cnt_45">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_43">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_38">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_35">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_30">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_25">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_20">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_15">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_10">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_5">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_0">0</div>
+                                    </div>
+                                    <div class="d-table-row" id="gojuon_table_2">
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_39">り</button></div>
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_31">み</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_26">ひ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_21">に</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_16">ち</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_11">し</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_6">き</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_1">い</button></div>
+                                    </div>
+                                    <div class="d-table-row" id="gojuon_table_3">
+                                        <div class="d-table-cell text-center"></div>
+                                        <div class="d-table-cell text-center"></div>
+                                        <div class="d-table-cell text-center" id="cnt_39">0</div>
+                                        <div class="d-table-cell text-center"></div>
+                                        <div class="d-table-cell text-center" id="cnt_31">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_26">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_21">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_16">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_11">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_6">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_1">0</div>
+                                    </div>
+                                    <div class="d-table-row" id="gojuon_table_4">
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_40">る</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_36">ゆ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_32">む</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_27">ふ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_22">ぬ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_17">つ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_12">す</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_7">く</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_2">う</button></div>
+                                    </div>
+                                    <div class="d-table-row" id="gojuon_table_5">
+                                        <div class="d-table-cell text-center"></div>
+                                        <div class="d-table-cell text-center"></div>
+                                        <div class="d-table-cell text-center" id="cnt_40">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_36">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_32">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_27">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_22">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_17">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_12">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_7">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_2">0</div>
+                                    </div>
+                                    <div class="d-table-row" id="gojuon_table_6">
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_41">れ</button></div>
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_33">め</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_28">へ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_23">ね</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_18">て</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_13">せ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_8">け</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_3">え</button></div>
+                                    </div>
+                                    <div class="d-table-row" id="gojuon_table_7">
+                                        <div class="d-table-cell text-center"></div>
+                                        <div class="d-table-cell text-center"></div>
+                                        <div class="d-table-cell text-center" id="cnt_41">0</div>
+                                        <div class="d-table-cell text-center"></div>
+                                        <div class="d-table-cell text-center" id="cnt_33">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_28">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_23">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_18">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_13">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_8">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_3">0</div>
+                                    </div>
+                                    <div class="d-table-row" id="gojuon_table_8">
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_80">ー</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_44">を</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_42">ろ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_37">よ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_34">も</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_29">ほ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_24">の</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_19">と</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_14">そ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_9">こ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_4">お</button></div>
+                                    </div>
+                                    <div class="d-table-row" id="gojuon_table_9">
+                                        <div class="d-table-cell text-center" id="cnt_80">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_44">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_42">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_37">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_34">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_29">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_24">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_19">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_14">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_9">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_4">0</div>
+                                    </div>
+
+                                    <div class="d-table-row" id="gojuon_table_10">
+                                        
+                                        <div class="d-table-cell"><br></div>
+                                        
+                                    </div>
+                                    <div class="d-table-row d-none" id="gojuon_table_11">
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_82">ゎ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_77">ゃ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_71">ぁ</button></div>
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_66">ぱ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_61">ば</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_56">だ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_51">ざ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_46">が</button></div>
+                                        <div class="d-table-cell"></div>
+                                    </div>
+                                    <div class="d-table-row d-none" id="gojuon_table_12">
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell text-center" id="cnt_82">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_77">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_71">0</div>
+                                        <div class="d-table-cell text-center"></div>
+                                        <div class="d-table-cell text-center" id="cnt_66">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_61">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_56">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_51">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_46">0</div>
+                                        <div class="d-table-cell"></div>
+                                    </div>
+                                    <div class="d-table-row d-none" id="gojuon_table_13">
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_78">ゅ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_72">ぃ</button></div>
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_67">ぴ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_62">び</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_57">ぢ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_52">じ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_47">ぎ</button></div>
+                                        <div class="d-table-cell"></div>
+                                    </div>
+                                    <div class="d-table-row d-none" id="gojuon_table_14">
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell text-center" id="cnt_78">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_72">0</div>
+                                        <div class="d-table-cell text-center"></div>
+                                        <div class="d-table-cell text-center" id="cnt_67">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_62">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_57">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_52">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_47">0</div>
+                                        <div class="d-table-cell"></div>
+                                    </div>
+                                    <div class="d-table-row d-none" id="gojuon_table_15">
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_79">ょ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_73">ぅ</button></div>
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_68">ぷ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_63">ぶ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_58">づ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_53">ず</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_48">ぐ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_81">ヴ</button></div>
+                                    </div>
+                                    <div class="d-table-row d-none" id="gojuon_table_16">
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell text-center" id="cnt_79">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_73">0</div>
+                                        <div class="d-table-cell text-center"></div>
+                                        <div class="d-table-cell text-center" id="cnt_68">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_63">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_58">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_53">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_48">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_81">0</div>
+                                    </div>
+                                    <div class="d-table-row d-none" id="gojuon_table_17">
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_74">ぇ</button></div>
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_69">ぺ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_64">べ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_59">で</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_54">ぜ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_49">げ</button></div>
+                                        <div class="d-table-cell"></div>
+                                    </div>
+                                    <div class="d-table-row d-none" id="gojuon_table_18">
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell text-center" id="cnt_74">0</div>
+                                        <div class="d-table-cell text-center"></div>
+                                        <div class="d-table-cell text-center" id="cnt_69">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_64">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_59">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_54">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_49">0</div>
+                                        <div class="d-table-cell"></div>
+                                    </div>
+                                    <div class="d-table-row d-none" id="gojuon_table_19">
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_76">っ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_75">ぉ</button></div>
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_70">ぽ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_65">ぼ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_60">ど</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_55">ぞ</button></div>
+                                        <div class="d-table-cell"><button type="button" class="btn btn-lg bg-secondary w-100 text-light" id="p_50">ご</button></div>
+                                        <div class="d-table-cell"></div>
+                                    </div>
+                                    <div class="d-table-row d-none" id="gojuon_table_20">
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell"></div>
+                                        <div class="d-table-cell text-center" id="cnt_76">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_75">0</div>
+                                        <div class="d-table-cell text-center"></div>
+                                        <div class="d-table-cell text-center" id="cnt_70">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_65">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_60">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_55">0</div>
+                                        <div class="d-table-cell text-center" id="cnt_50">0</div>
+                                        <div class="d-table-cell"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
+            
+            
+            <!-- Footer-->
+            <footer class="py-5 bg-dark sticky_footer">
+                <div class="container"><p class="m-0 text-center text-white">&copy; 2024 <i class="fa-brands fa-twitter" style="color: deepskyblue;"></i> <a class="text-decoration-none" href="https://twitter.com/g1ace0x0n">@g1ace0x0n</a></p></div>
+            </footer>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- my JS -->
+        <script src="js/ws.js"></script>
+        <!--- Use Fontawesome -->
+        <script src="https://kit.fontawesome.com/f872ef5f85.js" crossorigin="anonymous"></script>
+    </body>
+</html>
