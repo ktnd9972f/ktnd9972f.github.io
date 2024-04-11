@@ -10,14 +10,18 @@ function update(c_arr) {
   for (var i = 0; i < CLEN; i++) {
     document.getElementById('cnt_' + (i)).innerText = c_arr[i];
     let panel_elem = document.getElementById('p_' + (i));
+    panel_elem.classList.remove('bg-secondary');
+    panel_elem.classList.remove('bg-info');
+    panel_elem.classList.remove('bg-primary');
+    panel_elem.classList.remove('bg-success');
     if(c_arr[i] == 0){
-      panel_elem.setAttribute('class', 'btn btn-lg bg-secondary w-100 text-light');
+      panel_elem.classList.add('bg-secondary');
     }else if(c_arr[i] == 1){
-      panel_elem.setAttribute('class', 'btn btn-lg bg-info w-100 text-light');
+      panel_elem.classList.add('bg-info');
     }else if(c_arr[i] == 2){
-      panel_elem.setAttribute('class', 'btn btn-lg bg-primary w-100 text-light');
+      panel_elem.classList.add('bg-primary');
     }else{
-      panel_elem.setAttribute('class', 'btn btn-lg bg-success w-100 text-light');
+      panel_elem.classList.add('bg-success');
     }
   }
 
@@ -259,3 +263,22 @@ function checkbox(){
   count();
   switch_panel_visibility();
 }
+
+window.onresize = function () {
+  var windowSize = window.innerWidth;
+  for (var i = 0; i < CLEN; i++) {
+    let panel_elem = document.getElementById('p_' + (i));
+    
+    panel_elem.classList.remove('btn-lg');
+    panel_elem.classList.remove('btn-sm');
+    
+    if (windowSize < 768) {
+      panel_elem.classList.add('btn-sm');
+    } else {
+      panel_elem.classList.add('btn-lg');
+    }
+  }
+
+
+  
+};
