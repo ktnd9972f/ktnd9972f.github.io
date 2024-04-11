@@ -122,14 +122,6 @@ function draw(){
 }
 
 
-window.onload = function () {
-  // フォームの追加
-  add_form_element();
-  add_form_element();
-  add_form_element();
-  add_form_element();
-  add_form_element();
-};
 
 /**
  * フォームの追加
@@ -264,7 +256,7 @@ function checkbox(){
   switch_panel_visibility();
 }
 
-window.onresize = function () {
+function change_button_size(){
   var windowSize = window.innerWidth;
   for (var i = 0; i < CLEN; i++) {
     let panel_elem = document.getElementById('p_' + (i));
@@ -279,6 +271,19 @@ window.onresize = function () {
     }
   }
 
+}
+window.onresize = function () {
+  change_button_size();
+};
 
-  
+
+window.onload = function () {
+  // フォームの追加
+  add_form_element();
+  add_form_element();
+  add_form_element();
+  add_form_element();
+  add_form_element();
+  // ボタンサイズの調整
+  change_button_size();
 };
