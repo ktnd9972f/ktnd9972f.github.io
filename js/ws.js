@@ -59,7 +59,7 @@ var ctrarr = new Array(characters.length);
     str += s;
     
   }
-  console.log(str);
+  //console.log(str);
   
   for (var i = 0; i < str.length; i++) {
     var char = str.charAt(i);
@@ -72,7 +72,7 @@ var ctrarr = new Array(characters.length);
 
   //濁音・半濁音の区別
   let is_distinguish_dakuon = document.getElementById('check1');
-  console.log(is_distinguish_dakuon.checked);
+  //console.log(is_distinguish_dakuon.checked);
   if(is_distinguish_dakuon.checked == false){
     //がぎぐげござじずぜぞだぢづでど
     for (var i = 0; i < 15; i++) {
@@ -93,7 +93,7 @@ var ctrarr = new Array(characters.length);
 
   //捨て仮名の区別
   let is_distinguish_sutegana = document.getElementById('check2');
-  console.log(is_distinguish_sutegana.checked);
+  //console.log(is_distinguish_sutegana.checked);
   if(is_distinguish_sutegana.checked == false){
     //ぁぃぅぇぉ
     for (var i = 0; i < 5; i++) {
@@ -112,7 +112,7 @@ var ctrarr = new Array(characters.length);
       ctrarr[77+i] = 0;
     }
   }
-  console.log(ctrarr);
+  //console.log(ctrarr);
   update(ctrarr);
 }
 
@@ -200,7 +200,7 @@ function create_text_from(num) {
   text_form.setAttribute('type', 'text');
   text_form.setAttribute('id', 'form_' + num);
   text_form.setAttribute('name', 'form_' + num);
-  text_form.setAttribute('onkeyup', 'count()');
+  text_form.setAttribute('oninput', 'count()');
   return text_form;
 }
 
