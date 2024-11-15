@@ -30,7 +30,7 @@ function generateGrids() {
         new_width < lower_limit || upper_limit < new_width ||
         new_depth < lower_limit || upper_limit < new_depth){
         const errorMessage = document.getElementById("error_message");
-        errorMessage.textContent = "縦、横、奥行きのブロックの数は1以上10以下にしてください";
+        errorMessage.textContent = "縦、横、奥行きのブロックの数は1から10まで設定できます";
         setZero();
     }else if(new_height*new_width*new_depth > total_num_limit){
         const errorMessage = document.getElementById("error_message");
