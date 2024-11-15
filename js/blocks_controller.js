@@ -87,9 +87,9 @@ function putUsageDependingOnDevice() {
     // ユーザーエージェントに応じた操作方法を出力
     if (userAgent.includes("iphone") || userAgent.includes("android")) {
         const deviceMessage1 = document.getElementById("usage-rotation");
-        deviceMessage1.textContent = "ドラッグ";
+        deviceMessage1.textContent = "1本指でドラッグ(スライド)";
         const deviceMessage2 = document.getElementById("usage-translation");
-        deviceMessage2.textContent = "2本ドラッグ";
+        deviceMessage2.textContent = "2本指でドラッグ(スライド)";
         const deviceMessage3 = document.getElementById("usage-scaling");
         deviceMessage3.textContent = "ピンチイン/ピンチアウト";
     } else {
