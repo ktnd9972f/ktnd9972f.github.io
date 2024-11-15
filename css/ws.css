@@ -3,3 +3,46 @@
 .bg-gojuon {
   background-color: #eff4ff;
 }
+
+
+.grid-container {
+  margin-bottom: 20px;
+  display: grid;
+  gap: 5px;
+}
+.input-cell {
+  width: 40px;
+  height: 30px;
+  text-align: center;
+}
+
+.colored-input-0 {
+  background-color: #ffcccc; /* 薄い青 */
+}
+.colored-input-1 {
+  background-color: #ccffcc; /* 薄い青 */
+}
+.colored-input-2 {
+  background-color: #ccccff; /* 薄い青 */
+}
+.colored-input-3 {
+  background-color: #ffffcc; /* 薄い青 */
+}
+.colored-input-4 {
+  background-color: #ccffff; /* 薄い青 */
+}
+.colored-input-5 {
+  background-color: #ffccff; /* 薄い青 */
+}
+.colored-input-6 {
+  background-color: #eeffcc; /* 薄い青 */
+}
+.colored-input-7 {
+  background-color: #cceeff; /* 薄い青 */
+}
+.colored-input-8 {
+  background-color: #ffccee; /* 薄い青 */
+}
+.colored-input-9 {
+  background-color: #eeccff; /* 薄い青 */
+}
