@@ -54,6 +54,7 @@ function generateGrids() {
             for (let j = 0; j < new_width; j++) {
                 const input = document.createElement("input");
                 input.type = "text";
+                input.maxLength = 10;
                 tmp_className_string = "input-cell colored-input-"
                 input.className = tmp_className_string+String(q);
                 gridContainer.appendChild(input);
