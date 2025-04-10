@@ -1,0 +1,80 @@
+/* 50音表グリッド用カスタムレイアウト */
+.grid-template {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+  
+  #grid .cell {
+    border-radius: 6px;
+    padding: 6px;
+    height: 50px;
+    font-weight: bold;
+    text-align: center;
+    min-height: 48px;
+  }
+  
+  /* 結果表示のフェード */
+  #result {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+  }
+  
+  #result.visible {
+    opacity: 1;
+    color: green;
+  }
+  
+  /* ふわっと出現アニメーション */
+@keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .cell {
+    opacity: 0;
+    animation: fadeInUp 0.5s forwards;
+  }
+  
+  /* 正解のジャンプアニメ */
+  @keyframes bounce {
+    0%   { transform: scale(1); }
+    30%  { transform: scale(1.2); }
+    50%  { transform: scale(0.95); }
+    70%  { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  .result.bounce {
+    animation: bounce 0.6s ease;
+  }
+  
+
+  /* 出現回数ごとの色（ベース：Tailwindっぽい色） */
+.count-0 {
+    background-color: #f0f0f0;
+    color: #aaa;
+  }
+  .count-1 {
+    background-color: #bfdbfe; /* 青系 */
+    color: #1e3a8a;
+  }
+  .count-2 {
+    background-color: #60a5fa;
+    color: #fff;
+  }
+  .count-3 {
+    background-color: #f97316; /* オレンジ */
+    color: #fff;
+  }
+  .count-4, .count-5 {
+    background-color: #dc2626; /* 赤 */
+    color: #fff;
+  }
+  
+  
