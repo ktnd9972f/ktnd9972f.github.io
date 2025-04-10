@@ -140,8 +140,8 @@ function normalizeKana(str) {
   
     const normalize = (s) => [...normalizeKana(s)].sort().join("");
     const isCorrect =
-      normalize(g1) === normalize(word1) &&
-      normalize(g2) === normalize(word2);
+      (normalize(g1) === normalize(word1) && normalize(g2) === normalize(word2)) ||
+      (normalize(g2) === normalize(word1) && normalize(g1) === normalize(word2));
   
     result.classList.remove("bounce");
     void result.offsetWidth;
