@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ポケシーク - 2匹のポケモンの名前を特定するゲーム</title>
+
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <!-- Bootstrap icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link href="css/styles.css" rel="stylesheet" />
+  <!-- Custom CSS -->
+  <link href="css/base.css?v=20250411" rel="stylesheet" />
+  <link href="css/pokeseek.css?v=20250411" rel="stylesheet" />
+
+</head>
+<body class="bg-light">
+  <!-- Responsive navbar-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container px-lg-5">
+        <a class="navbar-brand" href="./index.html">きつねのものおき</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                
+                <li class="nav-item"><a class="nav-link disable" href="#!">遊び方(準備中)</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="./pokeseek.html">ポケシーク</a></li>
+                <!--
+                <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                -->
+            </ul>
+        </div>
+    </div>
+</nav>
+
+  <div class="container py-5">
+    <div class="card shadow">
+      <div class="card-body text-center">
+        <div class="logo-wrapper">
+          <h1 class="logo">ポケシーク</h1>
+          <div id="gameMode" class=""></div>
+        </div>
+        <div id="splitter"></div>
+        <div id="beforeStart">
+          <p class="mt-2">2匹のポケモンの名前が隠れています。できるだけ早く2匹のポケモンを特定しましょう！</p>
+          <button id="startButton" onclick="gameStart(0)" class="btn btn-lg btn-dark mb-3">チャレンジする</button>
+          <p>例：ピカチュウ
+            <img class="inline-image"
+            src="./assets/pokeseek/025.png"/>とイーブイ<img class="inline-image"
+            src="./assets/pokeseek/133.png"/></p>
+          
+          
+        </div>
+        
+        <div id="grid" class="d-grid grid-template mb-4"></div>
+        <div id="gameArea" style="display:none;">
+            
+
+            <div class="row g-2 justify-content-center mb-3">
+                <div class="col-12 col-md-4">
+                    <input id="guess1" class="form-control" placeholder="1匹目のポケモン">
+                </div>
+                <div class="col-12 col-md-4">
+                    <input id="guess2" class="form-control" placeholder="2匹目のポケモン">
+                </div>
+                <div class="col-12 col-md-2">
+                    <button id="submit" onclick="checkAnswer()" class="btn btn-dark w-100">答える</button>
+                </div>
+            </div>
+
+            <div id="result" class="fw-bold fs-4"></div>
+            <div id="freeplay" class="mt-2">
+              <button id="restart" onclick="gameStart(1)" class="btn btn-success mt-2">
+              別のお題で遊ぶ（全国図鑑）
+            </button>
+            <button id="restart" onclick="gameStart(2)" class="btn btn-outline-success mt-2">
+              別のお題で遊ぶ（初代のみ）
+            </button></div>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer-->
+  <footer class="py-5 bg-dark sticky_footer">
+    <div class="container">
+      <p class="m-0 text-center text-white small">当サイトは個人が運営する非公式のファンサイトです。株式会社ポケモン及びその他関連会社と一切関係ありません。</p>
+      <p class="m-0 text-center text-white">&copy; 2024 <i class="fa-brands fa-twitter" style="color: deepskyblue;"></i> <a class="text-decoration-none" href="https://twitter.com/ktn_xxx96">@ktn_xxx96</a></p>
+    </div>
+  </footer>
+
+
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!--- confetti -->  
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- my script -->
+  <script src="./js/wordlist.js"></script>
+  <script src="./js/pokeseek.js"></script>
+  
+  <!--- Use Fontawesome -->
+  <script src="https://kit.fontawesome.com/f872ef5f85.js" crossorigin="anonymous"></script>
+</body>
+</html>

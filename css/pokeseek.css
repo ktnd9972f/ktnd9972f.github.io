@@ -50,31 +50,47 @@
     100% { transform: scale(1); }
   }
   
-  .result.bounce {
-    animation: bounce 0.6s ease;
-  }
-  
 
-  /* 出現回数ごとの色（ベース：Tailwindっぽい色） */
+  /* 出現回数ごとの色 */
 .count-0 {
     background-color: #f0f0f0;
     color: #aaa;
   }
   .count-1 {
-    background-color: #bfdbfe; /* 青系 */
-    color: #1e3a8a;
+    background-color: #df3b3b; 
+    color: #fcfcfc;
   }
   .count-2 {
-    background-color: #60a5fa;
-    color: #fff;
+    background-color: #0b6de4;
+    color: #fcfcfc;
   }
   .count-3 {
-    background-color: #f97316; /* オレンジ */
-    color: #fff;
+    background-color: #ddc701; 
+    color: #fcfcfc;
   }
-  .count-4, .count-5 {
-    background-color: #dc2626; /* 赤 */
-    color: #fff;
+  .count-4 {
+    background-color: #8d08ca; 
+    color: #fcfcfc;
+  }
+  .count-5 {
+    background-color: #32035f; 
+    color: #fcfcfc;
   }
   
-  
+  .inline-image {
+    vertical-align: bottom; /* ← テキストを画像の下に揃える */
+  }
+
+  .logo-wrapper {
+    background-color: #f0f0f0; 
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+  }
+
+  .logo {
+    margin: 0;
+    font-family: "Zen Kurenaido", "Noto Sans JP", sans-serif;
+    font-weight: bold;
+    font-size: 2.2rem;
+    text-align: center;
+  }
