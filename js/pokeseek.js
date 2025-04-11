@@ -179,9 +179,9 @@ function checkAnswer() {
       const timeTaken = ((Date.now() - startTime) / 1000).toFixed(1);
       const gameUrl = "https://ktnd9972f.github.io/pokeseek.html";
       if(mode === 0){
-        shareText = `今日の2匹を見破った！ (${timeTaken}秒)\n${gameUrl}\n#ポケシーク #デイリーチャレンジ`;
+        shareText = `今日の2匹を見破った！ (かかった時間：${timeTaken}秒)\n${gameUrl}\n#ポケシーク #デイリーチャレンジ`;
       }else{
-        shareText = `隠れた2匹を見破った！ (${timeTaken}秒)\n${gameUrl}\n#ポケシーク #フリープレイ`;
+        shareText = `隠れた2匹を見破った！ (かかった時間：${timeTaken}秒)\n${gameUrl}\n#ポケシーク #フリープレイ`;
       }
       
       const shareUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText);
