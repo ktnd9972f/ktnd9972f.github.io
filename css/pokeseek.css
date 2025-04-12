@@ -94,3 +94,36 @@
     font-size: 2.2rem;
     text-align: center;
   }
+
+  .howto hr {
+    margin: 0.25rem 0;
+  }
+  
+  .howto section {
+    padding: 0.5rem 0;
+  }
+  
+  .howto h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: #333;
+  }
+
+  .howto section img {
+    display: block;
+    margin: 1rem auto; 
+    max-width: 100%; 
+    height: auto;
+  }
+
+  .howto section img.inline-img {
+    display: inline;
+    margin: 0;
+    max-width: none;
+    vertical-align: middle;
+  }
+
+  .howto section#modes li {
+    font-size: 1.1rem;
+    margin-bottom: 0.25em;
+  }

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- OGP -->
+  <meta property="og:title" content="ポケシーク - 2匹のポケモンの名前を特定するゲーム" />
+  <meta property="og:description" content="Webで遊べるアナグラム系ミニゲーム" />
+  <meta property="og:image" content="https://ktnd9972f.github.io/assets/pokeseek/pokeseek.png" />
+  <meta property="og:url" content="https://ktnd9972f.github.io/pokeseek.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ポケシーク" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ポケシーク - 2匹のポケモンの名前を特定するゲーム" />
+  <meta name="twitter:description" content="Webで遊べるアナグラム系ミニゲーム" />
+  <meta name="twitter:image" content="https://ktnd9972f.github.io/assets/pokeseek/pokeseek_ogp.png" />
+
+  <title>ポケシーク - 2匹のポケモンの名前を特定するゲーム</title>
+
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <!-- Bootstrap icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link href="css/styles.css" rel="stylesheet" />
+  <!-- Custom CSS -->
+  <link href="css/base.css?v=20250411" rel="stylesheet" />
+  <link href="css/pokeseek.css?v=20250411" rel="stylesheet" />
+
+</head>
+<body class="bg-light">
+  <!-- Responsive navbar-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container px-lg-5">
+        <a class="navbar-brand" href="./index.html">きつねのものおき</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="./pokeseek_howto.html">遊び方</a></li>
+                <li class="nav-item"><a class="nav-link active" href="./pokeseek.html">ポケシーク</a></li>
+                <!--
+                <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                -->
+            </ul>
+        </div>
+    </div>
+</nav>
+
+  <div class="container py-5">
+    <div class="card shadow howto">
+      <div class="card-body text-center">
+        <div class="logo-wrapper">
+          <h1 class="logo">ポケシークの遊び方</h1>
+          <div id="gameMode" class=""></div>
+        </div>
+      </div>
+      <div class="card-body">
+          <section id="description">
+            <h2>ゲームの説明</h2>
+            <p>
+              ポケシークは、隠された2匹のポケモンの名前を50音表のヒントから推理して当てるゲームです。
+              各文字の出現数が表示されるので、それを手がかりに2匹のポケモンを導き出しましょう！
+            </p>
+          </section>
+      
+          <hr>
+      
+          <section id="example">
+            <h2>問題の例</h2>
+            <img class="img-center" src="./assets/pokeseek/howto_example.png"/>
+            <p>ピカチュウ
+                <img class="inline-img"
+                src="./assets/pokeseek/025.png"/>とイーブイ<img class="inline-img"
+                src="./assets/pokeseek/133.png"/>がお題のとき、問題は上のようになります。
+                「イ」が合計2回登場し、他に登場する文字は全て1回ずつであることが50音表からわかります。
+                濁音や小さい文字などの扱いは後述する詳しいルールをご覧ください。
+            </p>
+            
+
+          </section>
+      
+          <hr>
+      
+          <section id="modes">
+            <h2>ゲームのモード</h2>
+            <ul>
+                <li>デイリーチャレンジ</li>
+                    すべてのプレイヤーが日替わりで共通のお題にチャレンジします。
+                <li>フリープレイ（全国図鑑）</li>
+                    ランダムに選ばれたお題で遊べます。対象は全てのポケモン1025匹です。
+                <li>フリープレイ（初代のみ）</li>
+                    ランダムに選ばれたお題で遊べます。対象は初代のポケモン151匹のみです。
+            </ul>
+          </section>
+      
+          <hr>
+      
+          <section id="notes">
+            <h2>詳しいルール</h2>
+            <ul>
+              <li>回答はすべてカタカナで、ポケモンの名前を入力してください。</li>
+                名前に記号が含まれるポケモンは記号を無視して、発音の通り回答してください。
+                <ul><li>ニドラン<font color=#ee0000>♂</font>→ニドラン<font color=#ee0000>オス</font></li>
+                <li>ポリゴン<font color=#ee0000>2</font>→ポリゴン<font color=#ee0000>ツー</font></li>
+                <li>ポリゴン<font color=#ee0000>Z</font>→ポリゴン<font color=#ee0000>ゼット</font></li>
+                <li>タイプ<font color=#ee0000>：</font>ヌル→タイプヌル</li>
+                <li>カプ<font color=#ee0000>・</font>コケコ→カプコケコ</li></ul>
+              <li>50音表では、<font color=#ee0000>濁音・半濁音、小さい文字（ャ・ュ・ョなど）はすべて清音</font>になります。</li>
+                たとえば、ピカチュウは「ヒ」「カ」「チ」「ユ」「ウ」として50音表で表示されます。
+              <li>50音表では、<font color=#ee0000>伸ばし棒（ー）はそのまま</font>になります。</li>
+                    たとえば、イーブイは「イ」「－」「フ」「イ」として50音表で表示されます。
+              <li>メガ進化やリージョンフォームは登場しません</li>
+            </ul>
+          </section>
+      
+          <hr>
+      
+          <section id="others">
+            <h2>その他</h2>
+            <p>
+                ポケシークは個人が運営する非公式のサービスです。株式会社ポケモン及びその他関連会社と一切関係ありません。
+            </p>
+            <p>
+            バグ報告やお問い合わせは<i class="fa-brands fa-twitter" style="color: deepskyblue;"></i><a class="text-decoration-none" href="https://twitter.com/ktn_xxx96">@ktn_xxx96</a>までお願いします。
+            </p>
+
+            <button class="btn btn-dark" onclick="location.href='./pokeseek.html'">ポケシークで遊ぶ</button>
+        </section>
+      </div>
+    </div>
+  </div>
+  <!-- Footer-->
+  <footer class="py-5 bg-dark sticky_footer">
+    <div class="container">
+      <p class="m-0 text-center text-white small">当サイトは個人が運営する非公式のファンサイトです。株式会社ポケモン及びその他関連会社と一切関係ありません。</p>
+      <p class="m-0 text-center text-white">&copy; 2024 <i class="fa-brands fa-twitter" style="color: deepskyblue;"></i> <a class="text-decoration-none" href="https://twitter.com/ktn_xxx96">@ktn_xxx96</a></p>
+    </div>
+  </footer>
+
+
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  
+  <!--- Use Fontawesome -->
+  <script src="https://kit.fontawesome.com/f872ef5f85.js" crossorigin="anonymous"></script>
+</body>
+</html>
