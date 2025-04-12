@@ -20,15 +20,24 @@ let mode = 0;
 
 // 疑似乱数生成
 function seededRandom(seed) {
-    let x = seed | 0;
-    return function () {
-      x ^= x << 13;
-      x ^= x >> 17;
-      x ^= x << 5;
-      return ((x >>> 0) / 0xFFFFFFFF);
-    };
-  }
+  let x = seed | 0;
+  return function () {
+    x ^= x << 13;
+    x ^= x >> 17;
+    x ^= x << 5;
+    return ((x >>> 0) / 0xFFFFFFFF);
+  };
+}
 
+function shuffleArray(array, rng) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+return arr;
+}
+  
 function getTodayWordPair() {
   const date = new Date();
   const ymd = `${date.getFullYear()}${(date.getMonth() + 1)
@@ -41,9 +50,7 @@ function getTodayWordPair() {
   }
 
   const rng = seededRandom(seed);
-
-  // シャッフルして2つ選ぶ
-  const shuffled = [...WORD_LIST].sort(() => rng() - 0.5);
+  const shuffled = shuffleArray(WORD_LIST, rng);
   return [shuffled[0], shuffled[1]];
 }
 
@@ -65,10 +72,10 @@ function getRandomWordPair() {
 
   // シャッフルして2つ選ぶ
   if(mode === 2){ //初代限定
-    const shuffled = [...WORD_LIST_KANTO].sort(() => rng() - 0.5);
+    const shuffled = shuffleArray(WORD_LIST_KANTO, rng);
     return [shuffled[0], shuffled[1]];
   }
-  const shuffled = [...WORD_LIST].sort(() => rng() - 0.5);
+  const shuffled = shuffleArray(WORD_LIST, rng);
   return [shuffled[0], shuffled[1]];
 }
 
@@ -173,15 +180,15 @@ function checkAnswer() {
 
   void result.offsetWidth;
 
+  const gameUrl = "https://ktnd9972f.github.io/pokeseek.html";
   if (isCorrect) {
       onCorrect();
 
       const timeTaken = ((Date.now() - startTime) / 1000).toFixed(1);
-      const gameUrl = "https://ktnd9972f.github.io/pokeseek.html";
       if(mode === 0){
-        shareText = `今日の2匹を見破った！ (かかった時間：${timeTaken}秒)\n${gameUrl}\n#ポケシーク #デイリーチャレンジ`;
+        shareText = `今日の2匹（🟥🟥🟥🟥🟥と🟦🟦🟦🟦🟦）を見破った！ (かかった時間：${timeTaken}秒)\n${gameUrl}\n#ポケシーク #デイリーチャレンジ #ポケモン`;
       }else{
-        shareText = `隠れた2匹を見破った！ (かかった時間：${timeTaken}秒)\n${gameUrl}\n#ポケシーク #フリープレイ`;
+        shareText = `隠れた2匹（${word1}と${word2}）を見破った！ (かかった時間：${timeTaken}秒)\n${gameUrl}\n#ポケシーク #フリープレイ #ポケモン`;
       }
       
       const shareUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText);
@@ -192,9 +199,20 @@ function checkAnswer() {
         </a>`;
       result.style.color = "green";
   } else {
-    result.innerHTML = `❌ 不正解<br>
-    <div class="fs-6 text-muted fw-normal">まだ回答を続けられます</div>`;
-    result.style.color = "red";
+      if(mode === 0){
+        shareText = `今日の2匹（🟥🟥🟥🟥🟥と🟦🟦🟦🟦🟦）を見破れなかった😞 \n${gameUrl}\n#ポケシーク #デイリーチャレンジ #ポケモン`;
+      }else{
+        shareText = `隠れた2匹を見破れなかった😞\n${gameUrl}\n#ポケシーク #フリープレイ #ポケモン`;
+      }
+      const shareUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText);
+    
+      result.innerHTML = `❌ 不正解<br>
+      <div class="fs-6 text-muted fw-normal">まだ回答を続けられます</div>
+      <a href="${shareUrl}" target="_blank" class="btn btn-outline-dark mt-2">
+            X(Twitter)でシェアする
+      </a>
+      `;
+      result.style.color = "red";
   }
 
 }
