@@ -24,7 +24,7 @@
     color: green;
   }
   
-  /* ふわっと出現アニメーション */
+  /* 出現アニメーション */
 @keyframes fadeInUp {
     from {
       opacity: 0;
@@ -41,7 +41,6 @@
     animation: fadeInUp 0.5s forwards;
   }
   
-  /* 正解のジャンプアニメ */
   @keyframes bounce {
     0%   { transform: scale(1); }
     30%  { transform: scale(1.2); }
@@ -55,37 +54,41 @@
 .count-0 {
     background-color: #f0f0f0;
     color: #aaa;
-  }
-  .count-1 {
-    background-color: #df3b3b; 
-    color: #fcfcfc;
-  }
-  .count-2 {
-    background-color: #0b6de4;
-    color: #fcfcfc;
-  }
-  .count-3 {
-    background-color: #ddc701; 
-    color: #fcfcfc;
-  }
-  .count-4 {
-    background-color: #8d08ca; 
-    color: #fcfcfc;
-  }
-  .count-5 {
-    background-color: #32035f; 
-    color: #fcfcfc;
-  }
-  
-  .inline-image {
-    vertical-align: bottom; /* ← テキストを画像の下に揃える */
-  }
+}
+.count-1 {
+  background-color: #df3b3b; 
+  color: #fcfcfc;
+}
+.count-2 {
+  background-color: #0b6de4;
+  color: #fcfcfc;
+}
+.count-3 {
+  background-color: #ddc701; 
+  color: #fcfcfc;
+}
+.count-4 {
+  background-color: #8d08ca; 
+  color: #fcfcfc;
+}
 
-  .logo-wrapper {
-    background-color: #f0f0f0; 
-    padding: 1rem 2rem;
-    border-radius: 1rem;
-  }
+
+.count-5 {
+  background: linear-gradient(135deg, #c0c0c0, #ffffff, #ffd700);
+  color: black;
+  font-weight: bold;
+}
+
+
+.inline-image {
+  vertical-align: bottom; 
+}
+
+.logo-wrapper {
+  background-color: #f0f0f0; 
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+}
 
   .logo {
     margin: 0;

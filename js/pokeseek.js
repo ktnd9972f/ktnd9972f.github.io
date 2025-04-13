@@ -166,18 +166,25 @@ function renderGrid(counts) {
   });
 }
   
-  
+function isSameCount(c1, c2) {
+  const keys1 = Object.keys(c1);
+  const keys2 = Object.keys(c2);
+  if (keys1.length !== keys2.length) return false;
+
+  for (let key of keys1) {
+    if (c1[key] !== c2[key]) return false;
+  }
+  return true;
+}
 
 function checkAnswer() {
   const g1 = document.getElementById("guess1").value.trim();
   const g2 = document.getElementById("guess2").value.trim();
   const result = document.getElementById("result");
 
-  const normalize = (s) => [...normalizeKana(s)].sort().join("");
-  const isCorrect =
-    (normalize(g1) === normalize(word1) && normalize(g2) === normalize(word2)) ||
-    (normalize(g2) === normalize(word1) && normalize(g1) === normalize(word2));
-
+  const c1 = countCharacters(word1, word2);
+  const c2 = countCharacters(g1, g2);
+  const isCorrect = (isSameCount(c1, c2) && WORD_LIST.includes(g1) && WORD_LIST.includes(g2));
   void result.offsetWidth;
 
   const gameUrl = "https://ktnd9972f.github.io/pokeseek.html";
@@ -193,7 +200,7 @@ function checkAnswer() {
       
       const shareUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText);
   
-      result.innerHTML = `🎉 Congratulations！ (${timeTaken} 秒)<br>
+      result.innerHTML = `🎉 特定成功！ (${timeTaken} 秒)<br>
         <a href="${shareUrl}" target="_blank" class="btn btn-outline-dark mt-2">
           X(Twitter)でシェアする
         </a>`;
