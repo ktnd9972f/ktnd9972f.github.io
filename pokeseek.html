@@ -46,7 +46,7 @@
             </ul>
         </div>
     </div>
-</nav>
+  </nav>
 
   <div class="container py-5">
     <div class="card shadow">
@@ -62,15 +62,12 @@
           <p>例：ピカチュウ
             <img class="inline-image"
             src="./assets/pokeseek/025.png"/>とイーブイ<img class="inline-image"
-            src="./assets/pokeseek/133.png"/></p>
-          
-          
+            src="./assets/pokeseek/133.png"/>
+          </p>
         </div>
         
         <div id="grid" class="d-grid grid-template mb-4"></div>
-        <div id="gameArea" style="display:none;">
-            
-
+          <div id="gameArea" style="display:none;">
             <div class="row g-2 justify-content-center mb-3">
                 <div class="col-12 col-md-4">
                     <input id="guess1" class="form-control" placeholder="1匹目のポケモン">
@@ -82,16 +79,55 @@
                     <button id="submit" onclick="checkAnswer()" class="btn btn-dark w-100">答える</button>
                 </div>
             </div>
-
             <div id="result" class="fw-bold fs-4"></div>
-            <div id="freeplay" class="mt-2">
-              <button id="restart" onclick="gameStart(1)" class="btn btn-success mt-2">
-              別のお題で遊ぶ（全国図鑑）
-            </button>
-            <button id="restart" onclick="gameStart(2)" class="btn btn-outline-success mt-2">
-              別のお題で遊ぶ（初代のみ）
-            </button></div>
+            <div id="action" class="mt-2">
+              <div class="row justify-content-center g-2">
+                <div class="col-12 col-md-6 col-lg-3">
+                  <button id="hint" onclick="useHint()" class="btn btn-outline-warning w-100" data-bs-toggle="modal" data-bs-target="#hintModal">
+                    <i class="fa-regular fa-lightbulb"></i>&nbsp;ヒントを見る
+                  </button>
+    
+                  <!-- ヒント表示モーダル -->
+                  <div class="modal fade" id="hintModal" tabindex="-1" aria-labelledby="hintModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="hintModalLabel">お題のヒント</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                        </div>
+                        <div class="modal-body" id="hintText">
+                          <!-- ヒントメッセージの挿入位置 -->
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                          <button type="button" class="btn btn-link" id="prevHintBtn" disabled><i class="fa-solid fa-caret-left"></i></button>
+                          <button type="button" class="btn btn-link" id="nextHintBtn"><i class="fa-solid fa-caret-right"></i></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- ヒント表示モーダル ここまで -->
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                  <button id="giveupBtn" onclick="giveUp()" class="btn btn-outline-danger w-100">
+                    <i class="fa-regular fa-flag"></i>&nbsp;ギブアップする
+                  </button>
+                </div>
             
+                <div class="col-12"><hr></div>
+            
+                <div class="col-12 col-md-6 col-lg-3">
+                  <button id="restart1" onclick="gameStart(1)" class="btn btn-success w-100">
+                    別のお題で遊ぶ（全国図鑑）
+                  </button>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                  <button id="restart2" onclick="gameStart(2)" class="btn btn-outline-success w-100">
+                    別のお題で遊ぶ（初代のみ）
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div> 
         </div>
       </div>
     </div>

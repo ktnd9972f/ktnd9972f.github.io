@@ -17,6 +17,7 @@ const GOJUUON = [
 let word1 = "", word2 = "";
 let startTime = null;
 let mode = 0;
+let isGaveUp = 0;
 
 // 疑似乱数生成
 function seededRandom(seed) {
@@ -177,6 +178,11 @@ function isSameCount(c1, c2) {
   return true;
 }
 
+function giveUp(){
+  isGaveUp = 1;
+  checkAnswer();
+} 
+
 function checkAnswer() {
   const g1 = document.getElementById("guess1").value.trim();
   const g2 = document.getElementById("guess2").value.trim();
@@ -191,11 +197,12 @@ function checkAnswer() {
   if (isCorrect) {
       onCorrect();
 
+      const hintInfo = isHintUsed ?  "" : "ノーヒントで";
       const timeTaken = ((Date.now() - startTime) / 1000).toFixed(1);
       if(mode === 0){
-        shareText = `今日の2匹（🟥🟥🟥🟥🟥と🟦🟦🟦🟦🟦）を見破った！ (かかった時間：${timeTaken}秒)\n#ポケシーク #デイリーチャレンジ #ポケモン\n${gameUrl}`;
+        shareText = hintInfo+`今日の2匹（🟥🟥🟥🟥🟥と🟦🟦🟦🟦🟦）を見破った！ (かかった時間：${timeTaken}秒)\n#ポケシーク #デイリーチャレンジ #ポケモン\n${gameUrl}`;
       }else{
-        shareText = `隠れた2匹（${word1}と${word2}）を見破った！ (かかった時間：${timeTaken}秒)\n#ポケシーク #フリープレイ #ポケモン\n${gameUrl}`;
+        shareText = hintInfo+`隠れた2匹（${word1}と${word2}）を見破った！ (かかった時間：${timeTaken}秒)\n#ポケシーク #フリープレイ #ポケモン\n${gameUrl}`;
       }
       
       const shareUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText);
@@ -213,12 +220,15 @@ function checkAnswer() {
       }
       const shareUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText);
     
-      result.innerHTML = `❌ 不正解<br>
-      <div class="fs-6 text-muted fw-normal">まだ回答を続けられます</div>
+      result.innerHTML = isGaveUp ? `🏳️ ギブアップ<br>
+      <div class="fs-6 text-muted fw-normal">2匹のポケモンは${word1}と${word2}でした</div>
       <a href="${shareUrl}" target="_blank" class="btn btn-outline-dark mt-2">
             X(Twitter)でシェアする
       </a>
-      `;
+      `:
+      `❌ 不正解<br>
+      <div class="fs-6 text-muted fw-normal">まだ回答を続けられます</div>
+      ` ;
       result.style.color = "red";
   }
 
@@ -237,13 +247,67 @@ function onCorrect() {
   
 
 
+/* ヒント機能 */
+let currentHintIndex = 0;
+let hintMessages = [];
+let isHintUsed = 0;
+
+function useHint(){
+  isHintUsed = 1;
+}
+
+function generateHints(word1, word2) {
+  const hints = [
+    `ヒント1/3<br>1匹目のポケモン：${word1[0]}${"〇".repeat(word1.length - 1)}<br>2匹目のポケモン：${"〇".repeat(word2.length)}`,
+    `ヒント2/3<br>1匹目のポケモン：${word1[0]}${"〇".repeat(word1.length - 1)}<br>2匹目のポケモン：${word2[0]}${"〇".repeat(word2.length - 1)}`,
+    `ヒント3/3<br>1匹目のポケモン：${word1}<br>2匹目のポケモン：${word2[0]}${"〇".repeat(word2.length - 1)}`,
+  ];
+  return hints;
+}
+
+function updateHintModal(messages, index) {
+  const prevBtn = document.getElementById("prevHintBtn");
+  const nextBtn = document.getElementById("nextHintBtn");
+  const hintText = document.getElementById("hintText");
+  if (hintText) {
+    hintText.innerHTML = messages[index];
+  }
+
+  if (prevBtn && nextBtn) {
+    prevBtn.disabled = (index === 0);
+    nextBtn.disabled = (index === messages.length - 1);
+  }
+
+}
+
+
+document.getElementById("nextHintBtn").addEventListener("click", () => {
+  if (currentHintIndex < hintMessages.length - 1) {
+    currentHintIndex++;
+    updateHintModal(hintMessages, currentHintIndex);
+  }
+});
+
+document.getElementById("prevHintBtn").addEventListener("click", () => {
+  if (currentHintIndex > 0) {
+    currentHintIndex--;
+    updateHintModal(hintMessages, currentHintIndex);
+  }
+});
+
+
+
 
 
 const example_counts = countCharacters("ピカチュウ", "イーブイ");
 renderGrid(example_counts);
 
 function gameStart(m){
+  // パラメータの初期化
   mode = m;
+  isHintUsed = 0;
+  isGaveUp = 0;
+
   const gameMode = document.getElementById("gameMode");
   const splitter = document.getElementById("splitter");
   if(mode === 0){
@@ -269,9 +333,14 @@ function gameStart(m){
   document.getElementById("guess2").value = "";
   document.getElementById("result").textContent = "";
 
+  // ヒント機能初期化
+  currentHintIndex = 0;
+  hintMessages = generateHints(word1, word2);
+  updateHintModal(hintMessages, currentHintIndex);
+
   // タイマー開始
   startTime = Date.now();
   //console.log("お題のポケモン:", word1, word2);
 
-  
+
 }
