@@ -257,10 +257,24 @@ function useHint(){
 }
 
 function generateHints(word1, word2) {
+  const t1 = `<table class="table table-borderless w-75 mx-auto">
+    <thead><tr>
+      <th colspan="2" class="h5">ヒント`;
+  const t2 = `</th>
+    </tr></thead>
+    <tbody><tr>
+      <td><strong>1匹目のポケモン</strong></td><td class="text-start">`;
+  const t3 = `</td></tr>
+    <tr>
+      <td><strong>2匹目のポケモン</strong></td>
+      <td class="text-start">`;
+  const t4 = `</td>
+    </tr></tbody>
+  </table>`
   const hints = [
-    `ヒント1/3<br>1匹目のポケモン：${word1[0]}${"〇".repeat(word1.length - 1)}<br>2匹目のポケモン：${"〇".repeat(word2.length)}`,
-    `ヒント2/3<br>1匹目のポケモン：${word1[0]}${"〇".repeat(word1.length - 1)}<br>2匹目のポケモン：${word2[0]}${"〇".repeat(word2.length - 1)}`,
-    `ヒント3/3<br>1匹目のポケモン：${word1}<br>2匹目のポケモン：${word2[0]}${"〇".repeat(word2.length - 1)}`,
+    t1+`1/3`+t2+`${word1[0]}${"〇".repeat(word1.length - 1)}`+t3+`${"〇".repeat(word2.length)}`+t4,
+    t1+`2/3`+t2+`${word1[0]}${"〇".repeat(word1.length - 1)}`+t3+`${word2[0]}${"〇".repeat(word2.length - 1)}`+t4,
+    t1+`3/3`+t2+`${word1}`+t3+`${word2[0]}${"〇".repeat(word2.length - 1)}`+t4,
   ];
   return hints;
 }
@@ -307,6 +321,13 @@ function gameStart(m){
   mode = m;
   isHintUsed = 0;
   isGaveUp = 0;
+
+  // ウィンドウ制御
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
 
   const gameMode = document.getElementById("gameMode");
   const splitter = document.getElementById("splitter");
