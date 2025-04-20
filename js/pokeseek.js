@@ -207,11 +207,14 @@ function checkAnswer() {
       
       const shareUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText);
   
-      result.innerHTML = `🎉 特定成功！ (${timeTaken} 秒)<br>
-        <a href="${shareUrl}" target="_blank" class="btn btn-outline-dark mt-2">
-          X(Twitter)でシェアする
-        </a>`;
+      result.innerHTML = `🎉 特定成功！ (${timeTaken} 秒)<br>`;
       result.style.color = "green";
+
+      const shareBtn = document.createElement("button");
+      shareBtn.className = "btn btn-outline-dark mt-2";
+      shareBtn.textContent = "X(Twitter)でシェアする";
+      shareBtn.onclick = () => window.open(shareUrl, '_blank');
+      result.appendChild(shareBtn);
   } else {
       if(mode === 0){
         shareText = `今日の2匹（🟥🟥🟥🟥🟥と🟦🟦🟦🟦🟦）を見破れなかった😞 \n#ポケシーク #デイリーチャレンジ #ポケモン\n${gameUrl}`;
@@ -221,14 +224,17 @@ function checkAnswer() {
       const shareUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText);
     
       result.innerHTML = isGaveUp ? `🏳️ ギブアップ<br>
-      <div class="fs-6 text-muted fw-normal">2匹のポケモンは${word1}と${word2}でした</div>
-      <a href="${shareUrl}" target="_blank" class="btn btn-outline-dark mt-2">
-            X(Twitter)でシェアする
-      </a>
-      `:
+      <div class="fs-6 text-muted fw-normal">2匹のポケモンは${word1}と${word2}でした</div>`:
       `❌ 不正解<br>
       <div class="fs-6 text-muted fw-normal">まだ回答を続けられます</div>
       ` ;
+      if(isGaveUp){
+        const shareBtn = document.createElement("button");
+        shareBtn.className = "btn btn-outline-dark mt-2";
+        shareBtn.textContent = "X(Twitter)でシェアする";
+        shareBtn.onclick = () => window.open(shareUrl, '_blank');
+        result.appendChild(shareBtn);
+      }
       result.style.color = "red";
   }
 
