@@ -110,6 +110,11 @@ function normalizeKana(str) {
   }).join("");
 }
 
+function toKatakana(str) {
+  return str.replace(/[\u3041-\u3096]/g, ch =>
+    String.fromCharCode(ch.charCodeAt(0) + 0x60)
+  );
+}
   
 function countCharacters(w1, w2) {
   const count = {};
@@ -184,10 +189,9 @@ function giveUp(){
 } 
 
 function checkAnswer() {
-  const g1 = document.getElementById("guess1").value.trim();
-  const g2 = document.getElementById("guess2").value.trim();
+  const g1 = toKatakana(document.getElementById("guess1").value.trim());
+  const g2 = toKatakana(document.getElementById("guess2").value.trim());
   const result = document.getElementById("result");
-
   const c1 = countCharacters(word1, word2);
   const c2 = countCharacters(g1, g2);
   const isCorrect = (isSameCount(c1, c2) && WORD_LIST.includes(g1) && WORD_LIST.includes(g2));
