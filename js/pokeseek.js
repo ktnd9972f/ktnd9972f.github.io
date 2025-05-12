@@ -206,7 +206,8 @@ function checkAnswer() {
       if(mode === 0){
         shareText = hintInfo+`今日の2匹（🟥🟥🟥🟥🟥と🟦🟦🟦🟦🟦）を見破った！ (かかった時間：${timeTaken}秒)\n#ポケシーク #デイリーチャレンジ #ポケモン\n${gameUrl}`;
       }else{
-        shareText = hintInfo+`隠れた2匹（${word1}と${word2}）を見破った！ (かかった時間：${timeTaken}秒)\n#ポケシーク #フリープレイ #ポケモン\n${gameUrl}`;
+        //word1とword2の場合、同じ文字数で違う組の場合、入力した回答とシステムが用意した回答が異なる場合があるため、入力をもとに出力
+        shareText = hintInfo+`隠れた2匹（${g1}と${g2}）を見破った！ (かかった時間：${timeTaken}秒)\n#ポケシーク #フリープレイ #ポケモン\n${gameUrl}`;
       }
       
       const shareUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText);
