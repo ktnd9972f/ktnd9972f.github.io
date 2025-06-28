@@ -188,6 +188,23 @@ function giveUp(){
   checkAnswer();
 } 
 
+function mapCountsToQuiz(counts) {
+  const mapping = {
+    1: "🟥",
+    2: "🟦",
+    3: "🟨",
+    4: "🟪"
+  };
+
+  const values = Object.values(counts)
+    .sort((a, b) => b - a);
+
+  return values.map(count => {
+    if (count >= 5) return "⬛";
+    return mapping[count] || "";
+  }).join("");
+}
+
 function checkAnswer() {
   const g1 = toKatakana(document.getElementById("guess1").value.trim());
   const g2 = toKatakana(document.getElementById("guess2").value.trim());
@@ -196,7 +213,8 @@ function checkAnswer() {
   const c2 = countCharacters(g1, g2);
   const isCorrect = (isSameCount(c1, c2) && WORD_LIST.includes(g1) && WORD_LIST.includes(g2));
   void result.offsetWidth;
-
+  
+  const quiz = mapCountsToQuiz(c1);
   const gameUrl = "https://ktnd9972f.github.io/pokeseek.html";
   if (isCorrect) {
       onCorrect();
@@ -204,10 +222,10 @@ function checkAnswer() {
       const hintInfo = isHintUsed ?  "" : "ノーヒントで";
       const timeTaken = ((Date.now() - startTime) / 1000).toFixed(1);
       if(mode === 0){
-        shareText = hintInfo+`今日の2匹（🟥🟥🟥🟥🟥と🟦🟦🟦🟦🟦）を見破った！ (かかった時間：${timeTaken}秒)\n#ポケシーク #デイリーチャレンジ #ポケモン\n${gameUrl}`;
+        shareText = hintInfo+`今日のお題（`+quiz+`）の2匹のポケモンを見破った！ (かかった時間：${timeTaken}秒)\n#ポケシーク #デイリーチャレンジ #ポケモン\n${gameUrl}`;
       }else{
         //word1とword2の場合、同じ文字数で違う組の場合、入力した回答とシステムが用意した回答が異なる場合があるため、入力をもとに出力
-        shareText = hintInfo+`隠れた2匹（${g1}と${g2}）を見破った！ (かかった時間：${timeTaken}秒)\n#ポケシーク #フリープレイ #ポケモン\n${gameUrl}`;
+        shareText = `お題：`+quiz+`\n`+hintInfo+`隠れた2匹のポケモン（${g1}と${g2}）を見破った！ (かかった時間：${timeTaken}秒)\n#ポケシーク #フリープレイ #ポケモン\n${gameUrl}`;
       }
       
       const shareUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText);
@@ -222,9 +240,9 @@ function checkAnswer() {
       result.appendChild(shareBtn);
   } else {
       if(mode === 0){
-        shareText = `今日の2匹（🟥🟥🟥🟥🟥と🟦🟦🟦🟦🟦）を見破れなかった😞 \n#ポケシーク #デイリーチャレンジ #ポケモン\n${gameUrl}`;
+        shareText = `今日のお題（`+quiz+`）のポケモンを見破れなかった😞 \n#ポケシーク #デイリーチャレンジ #ポケモン\n${gameUrl}`;
       }else{
-        shareText = `隠れた2匹を見破れなかった😞\n#ポケシーク #フリープレイ #ポケモン\n${gameUrl}`;
+        shareText = `お題：`+quiz+`\n隠れた2匹を見破れなかった😞\n#ポケシーク #フリープレイ #ポケモン\n${gameUrl}`;
       }
       const shareUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText);
     
