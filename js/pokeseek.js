@@ -219,7 +219,7 @@ function checkAnswer() {
   if (isCorrect) {
       onCorrect();
 
-      const hintInfo = isHintUsed ?  "" : "ノーヒントで";
+      const hintInfo = isHintUsed ?  "" : "🎉ノーヒントで";
       const timeTaken = ((Date.now() - startTime) / 1000).toFixed(1);
       if(mode === 0){
         shareText = hintInfo+`今日のお題（`+quiz+`）の2匹のポケモンを見破った！ (かかった時間：${timeTaken}秒)\n#ポケシーク #デイリーチャレンジ #ポケモン\n${gameUrl}`;
