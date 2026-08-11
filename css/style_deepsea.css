@@ -1,0 +1,159 @@
+/* ==========================================================================
+   深海へ - Descent / スタイルシート
+   --------------------------------------------------------------------------
+   このファイルは3つに分割した構成のうちの見た目(CSS)担当です。
+     - index.html  : 画面の骨組み(HTML)
+     - style.css   : このファイル。配色・レイアウト・アニメーションの見た目
+     - script.js   : キャンバス描画とゲームロジック(JavaScript)
+   ========================================================================== */
+
+/* Google Fonts の読み込み
+   - Shippori Mincho : 深度ゾーン名などの情緒的なテキスト用の明朝体
+   - JetBrains Mono   : 深度メーターなど「計測機器」っぽさを出す等幅フォント */
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+/* ページ全体のリセットと基本設定 */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent; /* iOSでタップ時に出る青いハイライトを消す */
+}
+html, body{
+  width:100%;
+  height:100%;
+  overflow:hidden;           /* スクロールバーを出さない(フルスクリーン体験のため) */
+  background:#02060D;        /* 読み込み中に一瞬見える背景も深海の黒に */
+  touch-action:none;         /* スマホでのピンチズーム/スクロールを禁止 */
+  overscroll-behavior:none;
+}
+
+/* 深海の背景・粒子・クラゲなどを描画するcanvas本体 */
+#scene{
+  position:fixed;
+  inset:0;
+  display:block;
+  cursor:default;
+}
+
+/* 画面周囲を少し暗くする「ビネット」効果。
+   --vignette-strength は script.js が深度に応じて毎フレーム更新するCSS変数。 */
+#vignette{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:radial-gradient(ellipse at 50% 42%, transparent 38%, rgba(0,0,0,var(--vignette-strength,0.3)) 100%);
+}
+
+/* 画面に重ねるUI要素(深度表示・ゾーン名)の共通ラッパー */
+.ui{
+  position:fixed;
+  inset:0;
+  pointer-events:none; /* UI自体はクリックを奪わない(クラゲのタップを妨げない) */
+  font-family:'JetBrains Mono', monospace;
+  color:#CFE8E0;
+}
+
+/* 左下：現在の深度表示 */
+.depth-readout{
+  position:absolute;
+  left:26px;
+  bottom:26px;
+}
+.depth-readout .label{
+  display:block;
+  font-size:10px;
+  letter-spacing:0.3em;
+  opacity:0.5;
+  margin-bottom:4px;
+}
+.depth-readout .value-row{
+  font-size:30px;
+  font-weight:300;
+  text-shadow:0 0 16px rgba(159,232,216,0.35);
+}
+.depth-readout .unit{
+  font-size:14px;
+  opacity:0.6;
+  margin-left:3px;
+}
+
+/* 画面中央に大きくフェードインする「ゾーン到達」演出 */
+.zone-announce{
+  position:fixed;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  font-family:'Shippori Mincho', serif;
+  font-size:clamp(20px, 5vw, 32px);
+  letter-spacing:0.22em;
+  color:#CFE8E0;
+  opacity:0;
+  transition:opacity 1.6s ease; /* script.js側のタイマーと足並みを揃えている */
+  text-shadow:0 0 26px rgba(159,232,216,0.45);
+  pointer-events:none;
+  width:90vw;
+}
+.zone-announce.show{ opacity:0.95; }
+.zone-announce .en{
+  display:block;
+  margin-top:8px;
+  font-family:'JetBrains Mono', monospace;
+  font-size:11px;
+  letter-spacing:0.22em;
+  opacity:0.55;
+}
+
+/* 右下：現在のゾーン名を常時表示する小さなラベル
+   (中央演出がフェードアウトした後に、入れ替わりでフェードインする) */
+.zone-corner{
+  position:absolute;
+  right:26px; bottom:26px;
+  text-align:right;
+  font-family:'Shippori Mincho', serif;
+  font-size:14px;
+  letter-spacing:0.12em;
+  color:#CFE8E0;
+  opacity:0;
+  transition:opacity 1.2s ease;
+  text-shadow:0 0 14px rgba(159,232,216,0.35);
+}
+.zone-corner.show{ opacity:0.75; }
+.zone-corner .en{
+  display:block;
+  margin-top:2px;
+  font-family:'JetBrains Mono', monospace;
+  font-size:9px;
+  letter-spacing:0.15em;
+  opacity:0.5;
+}
+
+/* 起動直後に表示される導入テキスト。
+   script.js が数秒後、またはタップ時に .hide を付与してフェードアウトさせる。 */
+.intro{
+  position:fixed;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap:12px;
+  font-family:'Shippori Mincho', serif;
+  color:#E8F6F1;
+  pointer-events:none;
+  opacity:1;
+  transition:opacity 2s ease; /* この2秒という長さをscript.js側でも参照している */
+}
+.intro p{
+  font-size:clamp(18px, 4vw, 26px);
+  letter-spacing:0.12em;
+  text-shadow:0 0 22px rgba(127,246,208,0.35);
+}
+.intro .sub{
+  font-size:11px;
+  font-family:'JetBrains Mono', monospace;
+  letter-spacing:0.25em;
+  opacity:0.55;
+}
+.intro.hide{ opacity:0; }

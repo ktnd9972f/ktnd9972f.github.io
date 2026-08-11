@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#02060D">
+
+<!-- OGP -->
+<meta property="og:title" content="深い海に沈む - 深海へ沈んでいくクラゲを眺めるアプリ" />
+<meta property="og:description" content="深海へ沈んでいくクラゲを眺めるアプリ" />
+<meta property="og:image" content="https://ktnd9972f.github.io/assets/deepsea.png" />
+<meta property="og:url" content="https://ktnd9972f.github.io/deepsea.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="深い海に沈む" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="深い海に沈む - 深海へ沈んでいくクラゲを眺めるアプリ" />
+<meta name="twitter:description" content="深海へ沈んでいくクラゲを眺めるアプリ" />
+<meta name="twitter:image" content="https://ktnd9972f.github.io/assets/deepsea.png" />
+
+
+<title>深い海に沈む</title>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="assets/deepsea_favicon.ico" />
+
+<link rel="stylesheet" href="./css/style_deepsea.css">
+</head>
+<body>
+<!-- 背景・粒子・クラゲなどをすべて描画するcanvas -->
+<canvas id="scene"></canvas>
+
+<!-- 画面端を少し暗くするビネット効果(深度に応じてscript.jsが濃さを変える) -->
+<div id="vignette"></div>
+
+<!-- 常時表示のUI(左下: 深度メーター / 右下: 現在のゾーン名) -->
+<div class="ui">
+  <div class="depth-readout">
+    <span class="label">深度</span>
+    <span class="value-row"><span id="depthValue">0.0</span><span class="unit">m</span></span>
+  </div>
+  <div class="zone-corner" id="zoneCorner">
+    <span id="zoneCornerJa"></span>
+    <span class="en" id="zoneCornerEn"></span>
+  </div>
+</div>
+
+<!-- ゾーンが切り替わった瞬間に、画面中央へ大きくフェードイン表示される -->
+<div class="zone-announce" id="zoneAnnounce">
+  <span id="zoneAnnounceJa"></span>
+  <span class="en" id="zoneAnnounceEn"></span>
+</div>
+
+<!-- 起動直後の導入テキスト。数秒後 or タップで消える -->
+<div class="intro" id="intro">
+  <p>クラゲが、静かな海を沈んでいく。</p>
+  
+</div>
+
+<script src="./js/script_deepsea.js"></script>
+</body>
+</html>
