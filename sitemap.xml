@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- トップページ -->
+  <url>
+    <loc>https://ktnd9972f.github.io/index.html</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <!-- 深い海に沈む -->
+  <url>
+    <loc>https://ktnd9972f.github.io/deepsea.html</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- ポケシーク -->
+  <url>
+    <loc>https://ktnd9972f.github.io/pokeseek.html</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- パングラム作成支援ツール -->
+  <url>
+    <loc>https://ktnd9972f.github.io/counter.html</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- 3D文字ブロックビューア -->
+  <url>
+    <loc>https://ktnd9972f.github.io/blocks.html</loc>
+    <priority>0.80</priority>
+  </url>
+
+</urlset>
