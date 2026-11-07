@@ -31,4 +31,10 @@
     <priority>0.80</priority>
   </url>
 
+  <!-- UTATYPE -->
+  <url>
+    <loc>https://ktnd9972f.github.io/utatype.html</loc>
+    <priority>0.80</priority>
+  </url>
+
 </urlset>
